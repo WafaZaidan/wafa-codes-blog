@@ -1,0 +1,4 @@
+baseURL = "https://wafa.codes"
+languageCode = "en-us"
+title = "Wafa Codes"
+theme = "ananke"

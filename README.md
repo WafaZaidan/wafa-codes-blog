@@ -1,2 +1,4 @@
 # wafa-codes-blog
-wafa.codes
+useful commands
+
+- run the blog > hugo server -D 
