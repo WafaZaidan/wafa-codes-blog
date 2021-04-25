@@ -1,186 +1,626 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    
-    <title>Notify your  | Wafa Codes</title>
-    <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="">
-    <meta name="generator" content="Hugo 0.82.0" />
-    
-    
-      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-    
-
-    
-
-  
-  
-    <link rel="stylesheet" href="/ananke/dist/main.css_5c99d70a7725bacd4c701e995b969fea.css" >
-  
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="Aim Build a script that fetches data about who&amp;rsquo;s on support each week and post it to Slack every Monday morning
+Tech Stack  Python Slack incoming webhooks google spreadsheet api Amazon AWS Lambda  Tutorial level: intermediate
+Little background story Currently at work, we have a weekly support rota system where we rotate support amongst each member of the team. This information is stored in some Google sheets on the cloud and in order to find out who&amp;rsquo;s on support each week you will have to manually check the sheet." />
+<meta name="keywords" content=", Posts" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://wafa.codes/posts/my-first-post/" />
 
 
+    <title>
+        
+            Who&#39;s on Support? :: Wafa Codes  — A simple theme for Hugo
+        
+    </title>
 
 
-    
-      
 
-    
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
 
-    
-    
-    <meta property="og:title" content="Notify your " />
-<meta property="og:description" content="" />
+
+
+<link rel="stylesheet" href="/main.eaf4f2571fc0260b30532ce37bc0e1c2107885bfec3b592755f30dba7741301e.css">
+
+
+
+
+
+
+<meta itemprop="name" content="Who&#39;s on Support?">
+<meta itemprop="description" content="Aim Build a script that fetches data about who&rsquo;s on support each week and post it to Slack every Monday morning
+Tech Stack  Python Slack incoming webhooks google spreadsheet api Amazon AWS Lambda  Tutorial level: intermediate
+Little background story Currently at work, we have a weekly support rota system where we rotate support amongst each member of the team. This information is stored in some Google sheets on the cloud and in order to find out who&rsquo;s on support each week you will have to manually check the sheet.">
+<meta itemprop="datePublished" content="2021-04-24T23:56:13+01:00" />
+<meta itemprop="dateModified" content="2021-04-24T23:56:13+01:00" />
+<meta itemprop="wordCount" content="1966">
+<meta itemprop="image" content="https://wafa.codes"/>
+
+
+
+<meta itemprop="keywords" content="Posts," />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://wafa.codes"/>
+
+<meta name="twitter:title" content="Who&#39;s on Support?"/>
+<meta name="twitter:description" content="Aim Build a script that fetches data about who&rsquo;s on support each week and post it to Slack every Monday morning
+Tech Stack  Python Slack incoming webhooks google spreadsheet api Amazon AWS Lambda  Tutorial level: intermediate
+Little background story Currently at work, we have a weekly support rota system where we rotate support amongst each member of the team. This information is stored in some Google sheets on the cloud and in order to find out who&rsquo;s on support each week you will have to manually check the sheet."/>
+
+
+
+
+    <meta property="og:title" content="Who&#39;s on Support?" />
+<meta property="og:description" content="Aim Build a script that fetches data about who&rsquo;s on support each week and post it to Slack every Monday morning
+Tech Stack  Python Slack incoming webhooks google spreadsheet api Amazon AWS Lambda  Tutorial level: intermediate
+Little background story Currently at work, we have a weekly support rota system where we rotate support amongst each member of the team. This information is stored in some Google sheets on the cloud and in order to find out who&rsquo;s on support each week you will have to manually check the sheet." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://wafa.codes/posts/my-first-post/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-03-24T21:18:25&#43;00:00" />
-<meta property="article:modified_time" content="2021-03-24T21:18:25&#43;00:00" />
+<meta property="og:url" content="https://wafa.codes/posts/my-first-post/" />
+<meta property="og:image" content="https://wafa.codes"/>
+<meta property="article:published_time" content="2021-04-24T23:56:13+01:00" />
+<meta property="article:modified_time" content="2021-04-24T23:56:13+01:00" /><meta property="og:site_name" content="Wafa Codes" />
 
-<meta itemprop="name" content="Notify your ">
-<meta itemprop="description" content=""><meta itemprop="datePublished" content="2021-03-24T21:18:25&#43;00:00" />
-<meta itemprop="dateModified" content="2021-03-24T21:18:25&#43;00:00" />
-<meta itemprop="wordCount" content="0">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Notify your "/>
-<meta name="twitter:description" content=""/>
 
-	
-  </head>
 
-  <body class="ma0 avenir bg-near-white">
+
+
+
+    <meta property="article:published_time" content="2021-04-24 23:56:13 &#43;0100 BST" />
+
+
+
+
+
+
+
+
+    </head>
 
     
-   
-  
-
-  <header>
-    <div class="bg-black">
-      <nav class="pv3 ph3 ph4-ns" role="navigation">
-  <div class="flex-l justify-between items-center center">
-    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
-      
-        Wafa Codes
-      
-    </a>
-    <div class="flex-l items-center">
-      
-
-      
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">Wafa codes</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
     </div>
-  </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/posts">Blog</a></li>
+    </ul>
 </nav>
 
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        10 minutes
+
+        
+      </p>
     </div>
-  </header>
 
-
-
-    <main class="pb7" role="main">
-      
-  
-  <article class="flex-l flex-wrap justify-between mw8 center ph3">
-    <header class="mt4 w-100">
-      <aside class="instapaper_ignoref b helvetica tracked">
-          
-        POSTS
-      </aside>
-      
-
-
-
-
-  <div id="sharing" class="mt3">
-
-    
-    <a href="https://www.facebook.com/sharer.php?u=https://wafa.codes/posts/my-first-post/" class="facebook no-underline" aria-label="share on Facebook">
-      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-
-    </a>
-
-    
-    
-    <a href="https://twitter.com/share?url=https://wafa.codes/posts/my-first-post/&amp;text=Notify%20your%20" class="twitter no-underline" aria-label="share on Twitter">
-      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
-
-    </a>
-
-    
-    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://wafa.codes/posts/my-first-post/&amp;title=Notify%20your%20" class="linkedin no-underline" aria-label="share on LinkedIn">
-      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
-</svg>
-
-    </a>
-  </div>
-
-
-      <h1 class="f1 athelas mt3 mb1">Notify your </h1>
-      
-      
-      <time class="f6 mv4 dib tracked" datetime="2021-03-24T21:18:25Z">March 24, 2021</time>
+    <article>
+      <h1 class="post-title">
+        <a href="https://wafa.codes/posts/my-first-post/">Who&rsquo;s on Support?</a>
+      </h1>
 
       
+
       
-    </header>
-    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><ul class="pa0">
-  
+
+      <div class="post-content">
+        <h3 id="aim">Aim</h3>
+<p>Build a script that fetches data about who&rsquo;s on support each week and post it to Slack every Monday morning</p>
+<h2 id="tech-stack">Tech Stack</h2>
+<ul>
+<li>Python</li>
+<li>Slack incoming webhooks</li>
+<li>google spreadsheet api</li>
+<li>Amazon AWS Lambda</li>
 </ul>
-<div class="mt6 instapaper_ignoref">
-      
-      
+<h3 id="tutorial-level">Tutorial level:</h3>
+<p>intermediate</p>
+<h2 id="little-background-story">Little background story</h2>
+<p>Currently at work, we have a weekly support rota system where we rotate support amongst each member of the team.
+This information is stored in some Google sheets on the cloud and in order to find out who&rsquo;s on support each week you will have to manually check the sheet.</p>
+<p>So I thought it would be nice to build a script that posts a message to my team&rsquo;s Slack channel with information about who&rsquo;s on support every Monday morning and to do that I did these steps</p>
+<ol>
+<li>Follow a googlsheet tutorial to fetch data</li>
+<li>Get an incoming webhook to my team&rsquo;s slack channel</li>
+<li>Create an AWS lambda function to host my script</li>
+<li>Write the script</li>
+</ol>
+<h2 id="boilerplate">Boilerplate</h2>
+<h3 id="1--get-the-spreadsheet">1- Get the Spreadsheet</h3>
+<p>First I checked out the spreadsheet where we keep the support rota data and it currently looks a little like this</p>
+<p>We have a primary person on support then a secondary person and then the manager. This is to make sure that there&rsquo;s always backup if one person doesnt respond in time</p>
+
+    <img src="/images/support-rota-mock.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px; width: 400px"  />
+
+
+<h3 id="2--slack-incoming-webhooks">2- Slack incoming webhooks</h3>
+<p>To be able to post messages to Slack you need to get an incoming webhook and there are two ways to do that</p>
+<ol>
+<li>To install a Slack app on your Slack workspace</li>
+<li>To simply install an incoming webhook to your Slack channel</li>
+</ol>
+<p>Initially while developing the script I created and installed a Slack app on my persoanl Slack workspace and once the script was ready I installed a custom incoming webhook (no app required) on my company&rsquo;s workspace and gave it acces to my team&rsquo;s channel so I can post messages there.</p>
+<p>In either cases your incoming webhook should look like this
+<code>https://hooks.slack.com/services/•••••••••••••/•••••••••••••••••••</code></p>
+<h3 id="3--google-dev-api">3- Google Dev API</h3>
+<p>Google has a simple and good tutorial on how to retreive data from a Google spreadsheet so I kept that open in a tab and chose the Python tutorial
+<code>https://developers.google.com/sheets/api/quickstart/python</code></p>
+<h3 id="4--install-python3">4- Install Python3</h3>
+<p>For this one I used 3.7.3</p>
+<h3 id="4--amazon-aws">4- Amazon AWS</h3>
+<p>You need an AWS account to run the script on a remote server</p>
+<h2 id="lets-get-started">Let&rsquo;s get started!</h2>
+<h3 id="googlesheets-api-tutorial">GoogleSheets API Tutorial</h3>
+<ol>
+<li>Follow this google tutorial to create a simple script that loads data from Googlesheets<code>https://developers.google.com/sheets/api/quickstart/python</code>.
+<em>Gotcha</em>:
+Please be aware that <code>SAMPLE_RANGE_NAME</code> is the name of the sheet in your google sheets. Every googlesheet has multiple sheets and the value of this variable should be the name of the sheet you&rsquo;re getting the data from. My sheet was called <code>New</code> as in the screenshot</li>
+</ol>
+
+    <img src="/images/support-rota-new-sheet-name.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px; width: 400px"  />
+
+
+<ol start="2">
+<li>Once your google script is hooked with your target Googlesheets we need to do the following</li>
+</ol>
+<ul>
+<li>You will notice that in the Google tutorial you will have generated a <code>credentials.json</code> and <code>tokens.json</code> files. We are going to move the content of the two files into a local object in the main file where the script is so that when we host the script on AWS we wont get into issues with opening/writing to a file.</li>
+</ul>
+<p>Move the content of each file into a separate object in your script file like so</p>
+<pre><code>credentialsObject = {
+    &quot;installed&quot;: {
+    &quot;client_id&quot;: &quot;******************************************************&quot;,
+    &quot;project_id&quot;: &quot;******************************************************&quot;,
+    &quot;auth_uri&quot;: &quot;https://accounts.google.com/o/oauth2/auth&quot;,
+    &quot;token_uri&quot;: &quot;https://oauth2.googleapis.com/token&quot;,
+    &quot;auth_provider_x509_cert_url&quot;: &quot;https://www.googleapis.com/oauth2/v1/certs&quot;,
+    &quot;client_secret&quot;: &quot;******************************************************&quot;,
+    &quot;redirect_uris&quot;: [&quot;urn:ietf:wg:oauth:2.0:oob&quot;, &quot;http://localhost&quot;]
+    }
+}
+tokensObject = {
+    &quot;token&quot;: &quot;************************************************************************************************************&quot;,
+    &quot;refresh_token&quot;: &quot;************************************************************************************************************&quot;,
+    &quot;token_uri&quot;: &quot;https://oauth2.googleapis.com/token&quot;,
+    &quot;client_id&quot;: &quot;******************************************************&quot;,
+    &quot;client_secret&quot;: &quot;*************************&quot;,
+    &quot;scopes&quot;: [&quot;https://www.googleapis.com/auth/spreadsheets.readonly&quot;],
+    &quot;expiry&quot;: &quot;2021-04-12T09:43:06.121345Z&quot;
+}
+
+</code></pre><ol start="3">
+<li>Next we will use our local objects instead of importing the json files</li>
+</ol>
+<ul>
+<li>Credentials: Where it says</li>
+</ul>
+<pre><code>flow = InstalledAppFlow.from_client_secrets_file('credentials.json', SCOPES)
+</code></pre><p>we are going to replace that with the line below so that we can use our <code>credentialsObject</code> instead of using the credentials.json file</p>
+<pre><code>InstalledAppFlow.from_client_secrets_file(credentialsObject, SCOPES)
+</code></pre><ul>
+<li>Tokens: Where it says</li>
+</ul>
+<pre><code>creds = Credentials.from_authorized_user_file('token.json', SCOPES)
+</code></pre><p>we will change that to the line below so that we use our tokensObject instead of using the tokens.json file</p>
+<pre><code>Credentials.from_authorized_user_info(tokensObject, SCOPES)
+</code></pre><h3 id="collecting-information-for-the-script">Collecting Information for the script</h3>
+<p>When posting the support rota message, I wanted to tag the person on support on Slack and to do that I created a map with each team member&rsquo;s name and their slack ID.</p>
+<p>In order to get the slack ID you need to click on the person&rsquo;s avatar on Slack &gt; <code>More</code> &gt; <code>Copy Member ID</code> like in the screen shot below</p>
+
+    <img src="/images/slackID.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px; width: 400px"  />
+
+
+<p>and then the map will look like this</p>
+<pre><code>rotaNametoSlackID = {
+        &quot;Wafa Zaidan&quot;: { slackID: &quot;********&quot;},
+}
+</code></pre><h3 id="writing-our-script">Writing Our Script</h3>
+<ol>
+<li>Right after <code>values = result.get('values', [])</code> I will just return values so that the <code>main</code> function&rsquo;s responsibility would be to only fetch the information from the sheets and return them</li>
+</ol>
+<p>So the function will look like this now</p>
+<pre><code>   def main():
+        creds = None
+        creds = Credentials.from_authorized_user_info(tokensObject, SCOPES)
+        if not creds or not creds.valid:
+            if creds and creds.expired and creds.refresh_token:
+                creds.refresh(Request())
+            else:
+                flow = InstalledAppFlow.from_client_secrets_file(
+                    credentialsObject, SCOPES)
+                creds = flow.run_local_server(port=0)
+        service = build('sheets', 'v4', credentials=creds)
+
+        result = service.spreadsheets().values().get(
+        spreadsheetId=SAMPLE_SPREADSHEET_ID, range=SAMPLE_RANGE_NAME).execute()
+        values = result.get('values', [])
+        return values
+</code></pre><ol start="2">
+<li>Next we will create a new function called <code>getNamesOnSuport</code> which accepts the values that are returned from the <code>main</code> function as a parameter. The function then will do some magic to return the slack ID of the person on support that week</li>
+</ol>
+<p>Now I want this script to fire every Monday morning as thats the beginning of the working week and the date stored in my team&rsquo;s Googlesheets.
+First I will import Python&rsquo;s <code>datetime</code> library. After that in order to get the date today I will call <code>datetime.datetime.today()</code> then call <code>strftime()</code> on it so that it returns the date in a format similar to the date format stored in our googlesheet so that we are able to compare them</p>
+<pre><code>datetime.date.strftime(datetime.datetime.today(), &quot;%d/%m/%Y&quot;)
+</code></pre><p>Then we will loop through the values we got from the <code>main</code> function and compare each date to today&rsquo;s formatted date and once we find a match we will will get the name of the person in that row and then we will loop through our <code>rotaNametoSlackID</code> map to return the slack id for that name</p>
+<p>So the function should look like this</p>
+<pre><code>def getNamesOnSuport(values):
+    formattedDateToday = datetime.date.strftime(datetime.datetime.today(), &quot;%d/%m/%Y&quot;)
+            peopleOnSuport = &quot;&quot;
+            for i in values:
+                if i[0] == formattedDateToday:
+                    for name in rotaNametoSlackID:
+                        personOnSupportSlackID = rotaNametoSlackID[name][&quot;slackID&quot;]
+                        peopleOnSuport+= f&quot;&lt;@{personOnSupportSlackID}&gt;&quot;
+                        return peopleOnSuport
+
+</code></pre><ol start="3">
+<li>
+<p>After that I created function <code>postMessageToSlack</code> which will post a message with the information I have to my team&rsquo;s Slack channel.</p>
+<ul>
+<li>
+<p>First I imported Python&rsquo;s http library <code>import http.client</code></p>
+</li>
+<li>
+<p>Then I stored the slack token I generted from the incoming webhooks in a local variable called <code>PERSONAL_SLACK_TOKEN</code></p>
+</li>
+<li>
+<p>Next I created a https connection, prepared the headers and the data and finally added the code to actually make the request</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>And the function looked like this</p>
+<pre><code>def postMessageToSlack(message):
+    slackConnection = http.client.HTTPSConnection(&quot;hooks.slack.com&quot;)
+    headers = {&quot;Content-Type&quot;: &quot;application/json&quot;}
+    data = &quot;{'text':'&quot;+message+&quot;'}&quot;
+    slackConnection.request(
+        &quot;POST&quot;,
+        f&quot;/services/{PERSONAL_SLACK_TOKEN}&quot;,
+        data,
+        headers
+    )
+</code></pre><ol start="4">
+<li>
+<p>Now its time to call these functions.</p>
+<ul>
+<li>
+<p>First I called <code>main</code> and stored the values it returns in a variable
+<code>sheetData = main()</code></p>
+</li>
+<li>
+<p>Then I called <code>getNamesOnSuport(sheetData)</code> and passed it the values we got from <code>main</code> and stored the returned value in a local variable too
+<code>peopleOnSuport = getNamesOnSuport(sheetData)</code></p>
+</li>
+<li>
+<p>Next I created the message that I want to post to my team&rsquo;s Slack channel by adding a simple ternary operation that returns a specific message if there are peopel on support and a different one if there are none</p>
+<p><code>rotaMessage = f&quot;On the support rota this week {peopleOnSuport} :superhero: Good luck! :fire: :bomb: &quot; if peopleOnSuport else 'No one is on support this week!'</code></p>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>Finally I simply called <code>postMessageToSlack</code> with the message we created to post it to Slack
+<code>postMessageToSlack(rotaMessage)</code></li>
+</ul>
+<p>At this point I ran the script by executing <code>python3 quickStart.py</code> and I saw a message popping up in my target Slack channel like this</p>
+
+    <img src="/images/message-slack.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px; width: 400px"  />
+
+
+<h3 id="hosting-the-script">Hosting the script</h3>
+<p>In order to automate the firing of this script so that we dont have to manually call it every time, we need to run it on a server.</p>
+<p>You could use a raspberry pi if you&rsquo;re ambitious but I went for a lambda function on AWS and because its a simple script, a lambda should do</p>
+<p>After logging into my AWS account, I went to <code>Services</code> &gt; <code>lambda</code> &gt; <code>Create function</code> &gt; Gave it a function name and chose python3.8 as the runtime language &gt; <code>Create function</code></p>
+<p>You will see a page that looks like this and a file called <code>lambda_function.py</code> already created there. Double click on it to open and you will notice a function called <code>lambda_handler</code>, this is a key function that AWS looks for when running our script.
+Within the function you will notice a commented out line which indicates where our code should go</p>
+
+    <img src="/images/aws-lambda.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px; width: 400px"  />
+
+
+<p>Next I wrapped my script in the <code>lambda_handler</code> key function to make it AWS ready</p>
+<ol>
+<li>
+<p>We will change the name of our script&rsquo;s file from <code>quickStart.py</code> to <code>lambda_function.py</code> as its the file name that AWS will look for when running the code in the server</p>
+</li>
+<li>
+<p>Next I added this line at the top of my script to import Pythons&rsquo;s JSON library <code>import json</code></p>
+</li>
+<li>
+<p>then I wrapped the script in a new function called <code>lambda_handler(event, context)</code> and made it accept two parameters - This is needed to mimic the structure of the lambda function that AWS is expecting</p>
+</li>
+<li>
+<p>Right at the end of the script I added this return statement</p>
+</li>
+</ol>
+<pre><code>    return {
+        'statusCode': 200,
+        'body': json.dumps('Hello from Lambda!')
+    }
+</code></pre><ol start="5">
+<li>
+<p>Next I followed this AWS tutorial <code>https://docs.aws.amazon.com/lambda/latest/dg/python-package-create.html#python-package-create-with-dependency</code> to zip the lambda function with the google dependencies we have.</p>
+<p>Usually For a basic script with no external runtime dependencies I would have just copied and pasted the code as it is at this point in the <code>lambda_function.py</code> but because we have some runtime dependencies we have to zip a folder with the dependencies and the script.</p>
+</li>
+</ol>
+<ul>
+<li>Be careful when running this command which is mentioned in the tutorial</li>
+</ul>
+<pre><code>  pip install --target ./package requests
+</code></pre><p>as you need to install the Google dependencies and not the Python <code>request</code> library.
+So the command should look like this instead</p>
+<pre><code>pip install --target ./package --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+</code></pre><ul>
+<li>And these are the exact steps I did</li>
+</ul>
+<pre><code>mkdir my-sourcecode-function
+Moved the `lambda_function.py` file I created into the new my-sourcecode-function`
+cd my-sourcecode-function
+pip install --target ./package --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+cd package
+zip -r ../my-deployment-package.zip .
+cd ..
+zip -g my-deployment-package.zip lambda_function.py
+</code></pre><p>And this will ship my script and the dependcies ina new zip folder which will appear in the root folder</p>
+<ol start="6">
+<li>
+<p>Next its time to upload the zip folder.</p>
+<p>I went back to the AWS function page and clicked on <code>Upload Form</code> &gt; <code>.zip file</code> and uploaded the zip folder I created and clicked <code>Save</code></p>
+</li>
+</ol>
+
+    <img src="/images/aws-zip.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px; width: 400px"  />
+
+
+<ol start="7">
+<li>Next I configured a time limit for this function to run so it doesnt exceed a certain timeout
+I went to <code>Configuration</code> &gt; <code>General Confuguration</code> &gt; <code>Edit</code> &gt; Set the timeout to 1 minute</li>
+</ol>
+
+    <img src="/images/aws-time.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px; width: 400px"  />
+
+
+<ul>
+<li>I would also recommend setting a budget on your AWS account so it doesnt exceed a certain amount so that you dont end up with a surprise bill. I set my amount to $2</li>
+</ul>
+<ol start="8">
+<li>
+<p>After that I clicked the <code>Test</code> tab then the <code>Test</code> button to see if the function runs correctly and posts a message to Slack and it did in my case yayyyy!</p>
+</li>
+<li>
+<p>Next I set a cron job to make the function run automatically at a certain day/time. So back to the AWS function and clicked on the <code>Add trigger</code> button</p>
+</li>
+</ol>
+
+    <img src="/images/trigger.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px; width: 400px"  />
+
+
+<p>Then I chose <code>EventBridge (CloudWatch Events)</code> and added a cron job.
+Mine looked like this <code>cron(32 8 ? * MON-MON *)</code> as I want the script to run every Monday at 8:32</p>
+<p>Et Voilaaa!!! The script is ready and is in the cloud, now all I have to do is set back and relax and expect it to fire every Monday morning</p>
+<p>You can find out how the final script that I built looks like here <a href="https://github.com/WafaZaidan/who-is-on-support">https://github.com/WafaZaidan/who-is-on-support</a></p>
+
       </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+      
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="https://wafa.codes/tags/posts/">Posts</a></span>
+        
+    </p>
+
+      
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        1966 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        
+          2021-04-24 23:56
+        
+
+         
+          
+        
+      </p>
     </div>
-
-    <aside class="w-30-l mt6-l">
-
-
-
-
-</aside>
-
-  </article>
-
-    </main>
-    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
-  <div class="flex justify-between">
-  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://wafa.codes" >
-    &copy;  Wafa Codes 2021 
-  </a>
-    <div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
+      <hr />
+      <div class="sharing-buttons">
+        
+<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fwafa.codes%2fposts%2fmy-first-post%2f" target="_blank" rel="noopener" aria-label="" title="Share on facebook">
+  <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+    </div>
   </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?url=https%3a%2f%2fwafa.codes%2fposts%2fmy-first-post%2f" target="_blank" rel="noopener" aria-label="" title="Share on twitter">
+  <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small">
+      <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title=Who%27s%20on%20Support%3f&amp;caption=Who%27s%20on%20Support%3f&amp;canonicalUrl=https%3a%2f%2fwafa.codes%2fposts%2fmy-first-post%2f" target="_blank" rel="noopener" aria-label="" title="Share on tumblr">
+  <div class="resp-sharing-button resp-sharing-button--tumblr resp-sharing-button--small">
+    <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.563 24c-5.093 0-7.031-3.756-7.031-6.411V9.747H5.116V6.648c3.63-1.313 4.512-4.596 4.71-6.469C9.84.051 9.941 0 9.999 0h3.517v6.114h4.801v3.633h-4.82v7.47c.016 1.001.375 2.371 2.207 2.371h.09c.631-.02 1.486-.205 1.936-.419l1.156 3.425c-.436.636-2.4 1.374-4.156 1.404h-.178l.011.002z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="mailto:?subject=Who%27s%20on%20Support%3f&amp;body=https%3a%2f%2fwafa.codes%2fposts%2fmy-first-post%2f" target="_self" rel="noopener" aria-label="" title="Share via email">
+  <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://pinterest.com/pin/create/button/?url=https%3a%2f%2fwafa.codes%2fposts%2fmy-first-post%2f&amp;media=https%3a%2f%2fwafa.codes%2fposts%2fmy-first-post%2f;description=Who%27s%20on%20Support%3f" target="_blank" rel="noopener" aria-label="" title="Share on pinterest">
+  <div class="resp-sharing-button resp-sharing-button--pinterest resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fwafa.codes%2fposts%2fmy-first-post%2f&amp;title=Who%27s%20on%20Support%3f&amp;summary=Who%27s%20on%20Support%3f&amp;source=https%3a%2f%2fwafa.codes%2fposts%2fmy-first-post%2f" target="_blank" rel="noopener" aria-label="" title="Share on linkedin">
+  <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=https%3a%2f%2fwafa.codes%2fposts%2fmy-first-post%2f&amp;resubmit=true&amp;title=Who%27s%20on%20Support%3f" target="_blank" rel="noopener" aria-label="" title="Share on reddit">
+  <div class="resp-sharing-button resp-sharing-button--reddit resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.xing.com/app/user?op=share;url=https%3a%2f%2fwafa.codes%2fposts%2fmy-first-post%2f;title=Who%27s%20on%20Support%3f" target="_blank" rel="noopener" aria-label="" title="Share on xing">
+  <div class="resp-sharing-button resp-sharing-button--xing resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.188 0c-.517 0-.741.325-.927.66 0 0-7.455 13.224-7.702 13.657.015.024 4.919 9.023 4.919 9.023.17.308.436.66.967.66h3.454c.211 0 .375-.078.463-.22.089-.151.089-.346-.009-.536l-4.879-8.916c-.004-.006-.004-.016 0-.022L22.139.756c.095-.191.097-.387.006-.535C22.056.078 21.894 0 21.686 0h-3.498zM3.648 4.74c-.211 0-.385.074-.473.216-.09.149-.078.339.02.531l2.34 4.05c.004.01.004.016 0 .021L1.86 16.051c-.099.188-.093.381 0 .529.085.142.239.234.45.234h3.461c.518 0 .766-.348.945-.667l3.734-6.609-2.378-4.155c-.172-.315-.434-.659-.962-.659H3.648v.016z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="whatsapp://send?text=Who%27s%20on%20Support%3f%20https%3a%2f%2fwafa.codes%2fposts%2fmy-first-post%2f" target="_blank" rel="noopener" aria-label="" title="Share on whatsapp">
+  <div class="resp-sharing-button resp-sharing-button--whatsapp resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fwafa.codes%2fposts%2fmy-first-post%2f&amp;t=Who%27s%20on%20Support%3f" target="_blank" rel="noopener" aria-label="" title="Share on hacker news">
+  <div class="resp-sharing-button resp-sharing-button--hackernews resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M0 24V0h24v24H0zM6.951 5.896l4.112 7.708v5.064h1.583v-4.972l4.148-7.799h-1.749l-2.457 4.875c-.372.745-.688 1.434-.688 1.434s-.297-.708-.651-1.434L8.831 5.896h-1.88z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://telegram.me/share/url?text=Who%27s%20on%20Support%3f&amp;url=https%3a%2f%2fwafa.codes%2fposts%2fmy-first-post%2f" target="_blank" rel="noopener" aria-label="" title="Share on telegram">
+  <div class="resp-sharing-button resp-sharing-button--telegram resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+    </div>
+  </div>
+</a>
+
+      </div>
+
+    
+
+    
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2021</span>
+            
+            <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span><span><a href="https://wafa.codes/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+          </div>
+    </div>
 </footer>
 
-  </body>
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.ace63d93098bf623f7c286a9084a4c22bfc482944c734f87fe0b685c7c6c7fa0ad2edb028c3b4b60d3343720c8ab490b320ad7f8edf4f6e9a6b898fc529057a9.js" integrity="sha512-rOY9kwmL9iP3woapCEpMIr/EgpRMc0&#43;H/gtoXHxsf6CtLtsCjDtLYNM0NyDIq0kLMgrX&#43;O309ummuJj8UpBXqQ=="></script>
+
+
+
+    </body>
 </html>

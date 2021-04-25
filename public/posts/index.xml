@@ -1,29 +1,320 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Posts on Wafa Codes</title>
-    <link>https://wafa.codes/posts/</link>
-    <description>Recent content in Posts on Wafa Codes</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 24 Mar 2021 21:18:25 +0000</lastBuildDate><atom:link href="https://wafa.codes/posts/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Notify your </title>
-      <link>https://wafa.codes/posts/my-first-post/</link>
-      <pubDate>Wed, 24 Mar 2021 21:18:25 +0000</pubDate>
-      
-      <guid>https://wafa.codes/posts/my-first-post/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Welcome2!</title>
-      <link>https://wafa.codes/posts/my-second-post/</link>
-      <pubDate>Wed, 24 Mar 2021 21:18:25 +0000</pubDate>
-      
-      <guid>https://wafa.codes/posts/my-second-post/</guid>
-      <description></description>
-    </item>
-    
-  </channel>
+    <channel>
+        <title>Posts on Wafa Codes</title>
+        <link>https://wafa.codes/posts/</link>
+        <description>Recent content in Posts on Wafa Codes</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+        <lastBuildDate>Sat, 24 Apr 2021 23:56:13 +0100</lastBuildDate>
+        <atom:link href="https://wafa.codes/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Who&#39;s on Support?</title>
+            <link>https://wafa.codes/posts/my-first-post/</link>
+            <pubDate>Sat, 24 Apr 2021 23:56:13 +0100</pubDate>
+            
+            <guid>https://wafa.codes/posts/my-first-post/</guid>
+            <description>Aim Build a script that fetches data about who&amp;rsquo;s on support each week and post it to Slack every Monday morning
+Tech Stack  Python Slack incoming webhooks google spreadsheet api Amazon AWS Lambda  Tutorial level: intermediate
+Little background story Currently at work, we have a weekly support rota system where we rotate support amongst each member of the team. This information is stored in some Google sheets on the cloud and in order to find out who&amp;rsquo;s on support each week you will have to manually check the sheet.</description>
+            <content type="html"><![CDATA[<h3 id="aim">Aim</h3>
+<p>Build a script that fetches data about who&rsquo;s on support each week and post it to Slack every Monday morning</p>
+<h2 id="tech-stack">Tech Stack</h2>
+<ul>
+<li>Python</li>
+<li>Slack incoming webhooks</li>
+<li>google spreadsheet api</li>
+<li>Amazon AWS Lambda</li>
+</ul>
+<h3 id="tutorial-level">Tutorial level:</h3>
+<p>intermediate</p>
+<h2 id="little-background-story">Little background story</h2>
+<p>Currently at work, we have a weekly support rota system where we rotate support amongst each member of the team.
+This information is stored in some Google sheets on the cloud and in order to find out who&rsquo;s on support each week you will have to manually check the sheet.</p>
+<p>So I thought it would be nice to build a script that posts a message to my team&rsquo;s Slack channel with information about who&rsquo;s on support every Monday morning and to do that I did these steps</p>
+<ol>
+<li>Follow a googlsheet tutorial to fetch data</li>
+<li>Get an incoming webhook to my team&rsquo;s slack channel</li>
+<li>Create an AWS lambda function to host my script</li>
+<li>Write the script</li>
+</ol>
+<h2 id="boilerplate">Boilerplate</h2>
+<h3 id="1--get-the-spreadsheet">1- Get the Spreadsheet</h3>
+<p>First I checked out the spreadsheet where we keep the support rota data and it currently looks a little like this</p>
+<p>We have a primary person on support then a secondary person and then the manager. This is to make sure that there&rsquo;s always backup if one person doesnt respond in time</p>
+
+    <img src="/images/support-rota-mock.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px; width: 400px"  />
+
+
+<h3 id="2--slack-incoming-webhooks">2- Slack incoming webhooks</h3>
+<p>To be able to post messages to Slack you need to get an incoming webhook and there are two ways to do that</p>
+<ol>
+<li>To install a Slack app on your Slack workspace</li>
+<li>To simply install an incoming webhook to your Slack channel</li>
+</ol>
+<p>Initially while developing the script I created and installed a Slack app on my persoanl Slack workspace and once the script was ready I installed a custom incoming webhook (no app required) on my company&rsquo;s workspace and gave it acces to my team&rsquo;s channel so I can post messages there.</p>
+<p>In either cases your incoming webhook should look like this
+<code>https://hooks.slack.com/services/•••••••••••••/•••••••••••••••••••</code></p>
+<h3 id="3--google-dev-api">3- Google Dev API</h3>
+<p>Google has a simple and good tutorial on how to retreive data from a Google spreadsheet so I kept that open in a tab and chose the Python tutorial
+<code>https://developers.google.com/sheets/api/quickstart/python</code></p>
+<h3 id="4--install-python3">4- Install Python3</h3>
+<p>For this one I used 3.7.3</p>
+<h3 id="4--amazon-aws">4- Amazon AWS</h3>
+<p>You need an AWS account to run the script on a remote server</p>
+<h2 id="lets-get-started">Let&rsquo;s get started!</h2>
+<h3 id="googlesheets-api-tutorial">GoogleSheets API Tutorial</h3>
+<ol>
+<li>Follow this google tutorial to create a simple script that loads data from Googlesheets<code>https://developers.google.com/sheets/api/quickstart/python</code>.
+<em>Gotcha</em>:
+Please be aware that <code>SAMPLE_RANGE_NAME</code> is the name of the sheet in your google sheets. Every googlesheet has multiple sheets and the value of this variable should be the name of the sheet you&rsquo;re getting the data from. My sheet was called <code>New</code> as in the screenshot</li>
+</ol>
+
+    <img src="/images/support-rota-new-sheet-name.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px; width: 400px"  />
+
+
+<ol start="2">
+<li>Once your google script is hooked with your target Googlesheets we need to do the following</li>
+</ol>
+<ul>
+<li>You will notice that in the Google tutorial you will have generated a <code>credentials.json</code> and <code>tokens.json</code> files. We are going to move the content of the two files into a local object in the main file where the script is so that when we host the script on AWS we wont get into issues with opening/writing to a file.</li>
+</ul>
+<p>Move the content of each file into a separate object in your script file like so</p>
+<pre><code>credentialsObject = {
+    &quot;installed&quot;: {
+    &quot;client_id&quot;: &quot;******************************************************&quot;,
+    &quot;project_id&quot;: &quot;******************************************************&quot;,
+    &quot;auth_uri&quot;: &quot;https://accounts.google.com/o/oauth2/auth&quot;,
+    &quot;token_uri&quot;: &quot;https://oauth2.googleapis.com/token&quot;,
+    &quot;auth_provider_x509_cert_url&quot;: &quot;https://www.googleapis.com/oauth2/v1/certs&quot;,
+    &quot;client_secret&quot;: &quot;******************************************************&quot;,
+    &quot;redirect_uris&quot;: [&quot;urn:ietf:wg:oauth:2.0:oob&quot;, &quot;http://localhost&quot;]
+    }
+}
+tokensObject = {
+    &quot;token&quot;: &quot;************************************************************************************************************&quot;,
+    &quot;refresh_token&quot;: &quot;************************************************************************************************************&quot;,
+    &quot;token_uri&quot;: &quot;https://oauth2.googleapis.com/token&quot;,
+    &quot;client_id&quot;: &quot;******************************************************&quot;,
+    &quot;client_secret&quot;: &quot;*************************&quot;,
+    &quot;scopes&quot;: [&quot;https://www.googleapis.com/auth/spreadsheets.readonly&quot;],
+    &quot;expiry&quot;: &quot;2021-04-12T09:43:06.121345Z&quot;
+}
+
+</code></pre><ol start="3">
+<li>Next we will use our local objects instead of importing the json files</li>
+</ol>
+<ul>
+<li>Credentials: Where it says</li>
+</ul>
+<pre><code>flow = InstalledAppFlow.from_client_secrets_file('credentials.json', SCOPES)
+</code></pre><p>we are going to replace that with the line below so that we can use our <code>credentialsObject</code> instead of using the credentials.json file</p>
+<pre><code>InstalledAppFlow.from_client_secrets_file(credentialsObject, SCOPES)
+</code></pre><ul>
+<li>Tokens: Where it says</li>
+</ul>
+<pre><code>creds = Credentials.from_authorized_user_file('token.json', SCOPES)
+</code></pre><p>we will change that to the line below so that we use our tokensObject instead of using the tokens.json file</p>
+<pre><code>Credentials.from_authorized_user_info(tokensObject, SCOPES)
+</code></pre><h3 id="collecting-information-for-the-script">Collecting Information for the script</h3>
+<p>When posting the support rota message, I wanted to tag the person on support on Slack and to do that I created a map with each team member&rsquo;s name and their slack ID.</p>
+<p>In order to get the slack ID you need to click on the person&rsquo;s avatar on Slack &gt; <code>More</code> &gt; <code>Copy Member ID</code> like in the screen shot below</p>
+
+    <img src="/images/slackID.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px; width: 400px"  />
+
+
+<p>and then the map will look like this</p>
+<pre><code>rotaNametoSlackID = {
+        &quot;Wafa Zaidan&quot;: { slackID: &quot;********&quot;},
+}
+</code></pre><h3 id="writing-our-script">Writing Our Script</h3>
+<ol>
+<li>Right after <code>values = result.get('values', [])</code> I will just return values so that the <code>main</code> function&rsquo;s responsibility would be to only fetch the information from the sheets and return them</li>
+</ol>
+<p>So the function will look like this now</p>
+<pre><code>   def main():
+        creds = None
+        creds = Credentials.from_authorized_user_info(tokensObject, SCOPES)
+        if not creds or not creds.valid:
+            if creds and creds.expired and creds.refresh_token:
+                creds.refresh(Request())
+            else:
+                flow = InstalledAppFlow.from_client_secrets_file(
+                    credentialsObject, SCOPES)
+                creds = flow.run_local_server(port=0)
+        service = build('sheets', 'v4', credentials=creds)
+
+        result = service.spreadsheets().values().get(
+        spreadsheetId=SAMPLE_SPREADSHEET_ID, range=SAMPLE_RANGE_NAME).execute()
+        values = result.get('values', [])
+        return values
+</code></pre><ol start="2">
+<li>Next we will create a new function called <code>getNamesOnSuport</code> which accepts the values that are returned from the <code>main</code> function as a parameter. The function then will do some magic to return the slack ID of the person on support that week</li>
+</ol>
+<p>Now I want this script to fire every Monday morning as thats the beginning of the working week and the date stored in my team&rsquo;s Googlesheets.
+First I will import Python&rsquo;s <code>datetime</code> library. After that in order to get the date today I will call <code>datetime.datetime.today()</code> then call <code>strftime()</code> on it so that it returns the date in a format similar to the date format stored in our googlesheet so that we are able to compare them</p>
+<pre><code>datetime.date.strftime(datetime.datetime.today(), &quot;%d/%m/%Y&quot;)
+</code></pre><p>Then we will loop through the values we got from the <code>main</code> function and compare each date to today&rsquo;s formatted date and once we find a match we will will get the name of the person in that row and then we will loop through our <code>rotaNametoSlackID</code> map to return the slack id for that name</p>
+<p>So the function should look like this</p>
+<pre><code>def getNamesOnSuport(values):
+    formattedDateToday = datetime.date.strftime(datetime.datetime.today(), &quot;%d/%m/%Y&quot;)
+            peopleOnSuport = &quot;&quot;
+            for i in values:
+                if i[0] == formattedDateToday:
+                    for name in rotaNametoSlackID:
+                        personOnSupportSlackID = rotaNametoSlackID[name][&quot;slackID&quot;]
+                        peopleOnSuport+= f&quot;&lt;@{personOnSupportSlackID}&gt;&quot;
+                        return peopleOnSuport
+
+</code></pre><ol start="3">
+<li>
+<p>After that I created function <code>postMessageToSlack</code> which will post a message with the information I have to my team&rsquo;s Slack channel.</p>
+<ul>
+<li>
+<p>First I imported Python&rsquo;s http library <code>import http.client</code></p>
+</li>
+<li>
+<p>Then I stored the slack token I generted from the incoming webhooks in a local variable called <code>PERSONAL_SLACK_TOKEN</code></p>
+</li>
+<li>
+<p>Next I created a https connection, prepared the headers and the data and finally added the code to actually make the request</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>And the function looked like this</p>
+<pre><code>def postMessageToSlack(message):
+    slackConnection = http.client.HTTPSConnection(&quot;hooks.slack.com&quot;)
+    headers = {&quot;Content-Type&quot;: &quot;application/json&quot;}
+    data = &quot;{'text':'&quot;+message+&quot;'}&quot;
+    slackConnection.request(
+        &quot;POST&quot;,
+        f&quot;/services/{PERSONAL_SLACK_TOKEN}&quot;,
+        data,
+        headers
+    )
+</code></pre><ol start="4">
+<li>
+<p>Now its time to call these functions.</p>
+<ul>
+<li>
+<p>First I called <code>main</code> and stored the values it returns in a variable
+<code>sheetData = main()</code></p>
+</li>
+<li>
+<p>Then I called <code>getNamesOnSuport(sheetData)</code> and passed it the values we got from <code>main</code> and stored the returned value in a local variable too
+<code>peopleOnSuport = getNamesOnSuport(sheetData)</code></p>
+</li>
+<li>
+<p>Next I created the message that I want to post to my team&rsquo;s Slack channel by adding a simple ternary operation that returns a specific message if there are peopel on support and a different one if there are none</p>
+<p><code>rotaMessage = f&quot;On the support rota this week {peopleOnSuport} :superhero: Good luck! :fire: :bomb: &quot; if peopleOnSuport else 'No one is on support this week!'</code></p>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>Finally I simply called <code>postMessageToSlack</code> with the message we created to post it to Slack
+<code>postMessageToSlack(rotaMessage)</code></li>
+</ul>
+<p>At this point I ran the script by executing <code>python3 quickStart.py</code> and I saw a message popping up in my target Slack channel like this</p>
+
+    <img src="/images/message-slack.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px; width: 400px"  />
+
+
+<h3 id="hosting-the-script">Hosting the script</h3>
+<p>In order to automate the firing of this script so that we dont have to manually call it every time, we need to run it on a server.</p>
+<p>You could use a raspberry pi if you&rsquo;re ambitious but I went for a lambda function on AWS and because its a simple script, a lambda should do</p>
+<p>After logging into my AWS account, I went to <code>Services</code> &gt; <code>lambda</code> &gt; <code>Create function</code> &gt; Gave it a function name and chose python3.8 as the runtime language &gt; <code>Create function</code></p>
+<p>You will see a page that looks like this and a file called <code>lambda_function.py</code> already created there. Double click on it to open and you will notice a function called <code>lambda_handler</code>, this is a key function that AWS looks for when running our script.
+Within the function you will notice a commented out line which indicates where our code should go</p>
+
+    <img src="/images/aws-lambda.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px; width: 400px"  />
+
+
+<p>Next I wrapped my script in the <code>lambda_handler</code> key function to make it AWS ready</p>
+<ol>
+<li>
+<p>We will change the name of our script&rsquo;s file from <code>quickStart.py</code> to <code>lambda_function.py</code> as its the file name that AWS will look for when running the code in the server</p>
+</li>
+<li>
+<p>Next I added this line at the top of my script to import Pythons&rsquo;s JSON library <code>import json</code></p>
+</li>
+<li>
+<p>then I wrapped the script in a new function called <code>lambda_handler(event, context)</code> and made it accept two parameters - This is needed to mimic the structure of the lambda function that AWS is expecting</p>
+</li>
+<li>
+<p>Right at the end of the script I added this return statement</p>
+</li>
+</ol>
+<pre><code>    return {
+        'statusCode': 200,
+        'body': json.dumps('Hello from Lambda!')
+    }
+</code></pre><ol start="5">
+<li>
+<p>Next I followed this AWS tutorial <code>https://docs.aws.amazon.com/lambda/latest/dg/python-package-create.html#python-package-create-with-dependency</code> to zip the lambda function with the google dependencies we have.</p>
+<p>Usually For a basic script with no external runtime dependencies I would have just copied and pasted the code as it is at this point in the <code>lambda_function.py</code> but because we have some runtime dependencies we have to zip a folder with the dependencies and the script.</p>
+</li>
+</ol>
+<ul>
+<li>Be careful when running this command which is mentioned in the tutorial</li>
+</ul>
+<pre><code>  pip install --target ./package requests
+</code></pre><p>as you need to install the Google dependencies and not the Python <code>request</code> library.
+So the command should look like this instead</p>
+<pre><code>pip install --target ./package --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+</code></pre><ul>
+<li>And these are the exact steps I did</li>
+</ul>
+<pre><code>mkdir my-sourcecode-function
+Moved the `lambda_function.py` file I created into the new my-sourcecode-function`
+cd my-sourcecode-function
+pip install --target ./package --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+cd package
+zip -r ../my-deployment-package.zip .
+cd ..
+zip -g my-deployment-package.zip lambda_function.py
+</code></pre><p>And this will ship my script and the dependcies ina new zip folder which will appear in the root folder</p>
+<ol start="6">
+<li>
+<p>Next its time to upload the zip folder.</p>
+<p>I went back to the AWS function page and clicked on <code>Upload Form</code> &gt; <code>.zip file</code> and uploaded the zip folder I created and clicked <code>Save</code></p>
+</li>
+</ol>
+
+    <img src="/images/aws-zip.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px; width: 400px"  />
+
+
+<ol start="7">
+<li>Next I configured a time limit for this function to run so it doesnt exceed a certain timeout
+I went to <code>Configuration</code> &gt; <code>General Confuguration</code> &gt; <code>Edit</code> &gt; Set the timeout to 1 minute</li>
+</ol>
+
+    <img src="/images/aws-time.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px; width: 400px"  />
+
+
+<ul>
+<li>I would also recommend setting a budget on your AWS account so it doesnt exceed a certain amount so that you dont end up with a surprise bill. I set my amount to $2</li>
+</ul>
+<ol start="8">
+<li>
+<p>After that I clicked the <code>Test</code> tab then the <code>Test</code> button to see if the function runs correctly and posts a message to Slack and it did in my case yayyyy!</p>
+</li>
+<li>
+<p>Next I set a cron job to make the function run automatically at a certain day/time. So back to the AWS function and clicked on the <code>Add trigger</code> button</p>
+</li>
+</ol>
+
+    <img src="/images/trigger.png"  alt="Hello Friend"  class="center"  style="border-radius: 8px; width: 400px"  />
+
+
+<p>Then I chose <code>EventBridge (CloudWatch Events)</code> and added a cron job.
+Mine looked like this <code>cron(32 8 ? * MON-MON *)</code> as I want the script to run every Monday at 8:32</p>
+<p>Et Voilaaa!!! The script is ready and is in the cloud, now all I have to do is set back and relax and expect it to fire every Monday morning</p>
+<p>You can find out how the final script that I built looks like here <a href="https://github.com/WafaZaidan/who-is-on-support">https://github.com/WafaZaidan/who-is-on-support</a></p>
+]]></content>
+        </item>
+        
+    </channel>
 </rss>
