@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Sat, 24 Apr 2021 23:56:13 +0100</lastBuildDate><atom:link href="https://wafa.codes/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 18 Oct 2021 13:19:36 +0100</lastBuildDate><atom:link href="https://wafa.codes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>8 Things I Learned From Working on Devices</title>
+      <link>https://wafa.codes/posts/8-things-i-learned-from-working-on-devices/</link>
+      <pubDate>Mon, 18 Oct 2021 13:19:36 +0100</pubDate>
+      
+      <guid>https://wafa.codes/posts/8-things-i-learned-from-working-on-devices/</guid>
+      <description>Over the past 3 years, I have been working on Peacock, the video streaming app by Comcast. My team builds and maintains a library in Typescript that powers video playback on tens of devices. And here are the lessons I learned
+1. No such thing as a one-size-fits-all 👗 In the streaming world, there are so many cool features to build and while I’m still fascinated by the fact that you can build an MSE (Media Source Extension) video player in a few lines of code, there are many cool things like ad insertion, linear scrubbing, prefetching and more.</description>
+    </item>
+    
     <item>
       <title>Who&#39;s on Support?</title>
       <link>https://wafa.codes/posts/my-first-post/</link>

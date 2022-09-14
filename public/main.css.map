@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "main.css",
-	"sourceRoot": "/Users/wza03/Desktop/wafa-blogs/quickstart",
+	"sourceRoot": "/Users/wafa/Dev/wafa-codes-blog",
 	"sources": [
 		"themes/hello-friend-ng/assets/scss/main.scss",
 		"themes/hello-friend-ng/assets/scss/_normalize.scss",

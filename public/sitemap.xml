@@ -1,38 +1,27 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
-    <loc>https://wafa.codes/tags/posts/</loc>
-    <lastmod>2021-04-24T23:56:13+01:00</lastmod>
-  </url>
-  
-  <url>
+    <loc>https://wafa.codes/posts/8-things-i-learned-from-working-on-devices/</loc>
+    <lastmod>2021-10-18T13:19:36+01:00</lastmod>
+  </url><url>
     <loc>https://wafa.codes/posts/</loc>
-    <lastmod>2021-04-24T23:56:13+01:00</lastmod>
-  </url>
-  
-  <url>
+    <lastmod>2021-10-18T13:19:36+01:00</lastmod>
+  </url><url>
+    <loc>https://wafa.codes/tags/posts/</loc>
+    <lastmod>2021-10-18T13:19:36+01:00</lastmod>
+  </url><url>
     <loc>https://wafa.codes/tags/</loc>
-    <lastmod>2021-04-24T23:56:13+01:00</lastmod>
-  </url>
-  
-  <url>
+    <lastmod>2021-10-18T13:19:36+01:00</lastmod>
+  </url><url>
     <loc>https://wafa.codes/</loc>
-    <lastmod>2021-04-24T23:56:13+01:00</lastmod>
-  </url>
-  
-  <url>
+    <lastmod>2021-10-18T13:19:36+01:00</lastmod>
+  </url><url>
     <loc>https://wafa.codes/posts/my-first-post/</loc>
     <lastmod>2021-04-24T23:56:13+01:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://wafa.codes/blog/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://wafa.codes/series/</loc>
   </url>
-  
 </urlset>
